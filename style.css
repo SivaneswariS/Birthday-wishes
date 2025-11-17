@@ -1,34 +1,45 @@
+/* --- BODY & CENTERING --- */
 body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
     background: linear-gradient(to bottom right, #ffb6da, #ffd3e8);
     text-align: center;
+
+    /* Center everything */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* vertical center */
+    align-items: center;      /* horizontal center */
+    height: 100vh;            /* full viewport height */
+    overflow: hidden;         /* hide scroll if balloons go outside */
 }
 
+/* --- CONTAINER --- */
 .container {
-    margin-top: 80px;
+    /* Flexbox centers everything, no margin needed */
 }
 
-/* --- Input + Button Wrapper for separate lines --- */
+/* --- Input + Button Wrapper --- */
 .input-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;      /* cute spacing */
+    gap: 12px; /* spacing */
 }
 
-
+/* --- TITLE --- */
 .title {
     font-size: 28px;
     color: #d63384; 
     text-shadow: 0 0 10px #ff9acb;
 }
 
+/* --- INPUT --- */
 input {
     width: 170px;
     padding: 14px 18px;
-    padding-left: 42px;          /* space for emoji */
+    padding-left: 42px;          
     background: rgba(255, 255, 255, 0.7);
     border: 2px solid #ff9acb;
     border-radius: 25px;
@@ -40,9 +51,8 @@ input {
 
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><text x='0' y='20' font-size='20'>🎀</text></svg>");
     background-repeat: no-repeat;
-    background-position: 12px center;   /* center-left alignment */
+    background-position: 12px center;
 }
-
 
 input::placeholder {
     color: #ff69b4;
@@ -56,6 +66,7 @@ input:focus {
     transform: scale(1.03);
 }
 
+/* --- BUTTON --- */
 button {
     padding: 12px 25px;
     background: #ff69b4;
@@ -72,49 +83,61 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* --- OUTPUT CARD --- */
 #output {
     margin: 20px auto;
-    width: 300px;                  /* fixed card width */
+    width: 300px;                  
     padding: 20px;
-    background: rgba(255, 255, 255, 0.85);  /* more solid background */
+    background: rgba(255, 255, 255, 0.85);  
     border: 2px solid #ff9acb;
     border-radius: 15px;
     font-size: 18px;
     color: #d63384;
     text-align: center;
     text-shadow: 0 0 5px rgba(255, 140, 180, 0.3);
-    box-shadow: 0 6px 20px rgba(255, 140, 180, 0.4); /* lifted card effect */
+    box-shadow: 0 6px 20px rgba(255, 140, 180, 0.4); 
     backdrop-filter: blur(6px);
     animation: fadeIn 0.6s ease;
 }
-
-
 
 .hidden {
     display: none;
 }
 
-/* Balloons Animation */
+/* --- PARTY-STYLE BALLOONS (12 balloons) --- */
 .balloons span {
     position: absolute;
-    font-size: 40px;
-    animation: float 6s infinite ease-in-out;
-    opacity: 0.7;
+    bottom: -60px;
+    opacity: 0.8;
+    transform-origin: center bottom;
 }
 
-.balloons span:nth-child(1) { left: 10%; animation-delay: 0s; }
-.balloons span:nth-child(2) { left: 30%; animation-delay: 1.2s; }
-.balloons span:nth-child(3) { left: 50%; animation-delay: 2.4s; }
-.balloons span:nth-child(4) { left: 70%; animation-delay: 1.8s; }
-.balloons span:nth-child(5) { left: 85%; animation-delay: 0.7s; }
+/* Balloon positions, sizes, speeds, and delays */
+.balloons span:nth-child(1)  { left: 5%;   font-size: 36px; animation: floatSway 5s infinite ease-in-out 0s; }
+.balloons span:nth-child(2)  { left: 15%;  font-size: 38px; animation: floatSway 6s infinite ease-in-out 1s; }
+.balloons span:nth-child(3)  { left: 25%;  font-size: 34px; animation: floatSway 5.5s infinite ease-in-out 0.5s; }
+.balloons span:nth-child(4)  { left: 35%;  font-size: 40px; animation: floatSway 6.8s infinite ease-in-out 0.7s; }
+.balloons span:nth-child(5)  { left: 45%;  font-size: 37px; animation: floatSway 6.2s infinite ease-in-out 1.2s; }
+.balloons span:nth-child(6)  { left: 55%;  font-size: 35px; animation: floatSway 5.8s infinite ease-in-out 0.3s; }
+.balloons span:nth-child(7)  { left: 65%;  font-size: 39px; animation: floatSway 6.5s infinite ease-in-out 1s; }
+.balloons span:nth-child(8)  { left: 75%;  font-size: 36px; animation: floatSway 5.3s infinite ease-in-out 0.6s; }
+.balloons span:nth-child(9)  { left: 80%;  font-size: 34px; animation: floatSway 7s infinite ease-in-out 1.5s; }
+.balloons span:nth-child(10) { left: 88%;  font-size: 38px; animation: floatSway 6.7s infinite ease-in-out 0.8s; }
+.balloons span:nth-child(11) { left: 92%;  font-size: 35px; animation: floatSway 5.9s infinite ease-in-out 1.1s; }
+.balloons span:nth-child(12) { left: 98%;  font-size: 37px; animation: floatSway 6.3s infinite ease-in-out 0.4s; }
 
-@keyframes float {
-    0% { bottom: -50px; }
-    50% { bottom: 300px; }
-    100% { bottom: -50px; }
+/* COMBINED FLOAT + SWAY + ROTATION */
+@keyframes floatSway {
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); }
+    25%  { transform: translateY(-15vh) translateX(5px) rotate(5deg); }
+    50%  { transform: translateY(-30vh) translateX(-5px) rotate(-5deg); }
+    75%  { transform: translateY(-45vh) translateX(5px) rotate(5deg); }
+    100% { transform: translateY(0) translateX(0) rotate(0deg); }
 }
 
+/* FADE IN FOR OUTPUT CARD */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
