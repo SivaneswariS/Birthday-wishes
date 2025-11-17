@@ -10,6 +10,15 @@ body {
     margin-top: 80px;
 }
 
+/* --- Input + Button Wrapper for separate lines --- */
+.input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;      /* cute spacing */
+}
+
+
 .title {
     font-size: 28px;
     color: #d63384; 
@@ -17,16 +26,21 @@ body {
 }
 
 input {
-    width: 70%;
+    width: 170px;
     padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.7); /* soft glass effect */
-    border: 2px solid #ff9acb; 
+    padding-left: 42px;          /* space for emoji */
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid #ff9acb;
     border-radius: 25px;
     font-size: 18px;
     color: #d63384;
     outline: none;
     transition: 0.3s ease;
     box-shadow: 0 4px 12px rgba(255, 155, 180, 0.4);
+
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><text x='0' y='20' font-size='20'>🎀</text></svg>");
+    background-repeat: no-repeat;
+    background-position: 12px center;   /* center-left alignment */
 }
 
 
@@ -42,9 +56,7 @@ input:focus {
     transform: scale(1.03);
 }
 
-
 button {
-    margin-top: 20px;
     padding: 12px 25px;
     background: #ff69b4;
     color: white;
@@ -61,9 +73,9 @@ button:hover {
 }
 
 #output {
-    margin: 30px auto;            /* centers the box */
-    width: 80%;                   /* reduces width */
-    padding: 25px;                /* gives space inside */
+    margin: 30px auto;
+    width: 80%;
+    padding: 25px;
     background: rgba(255, 255, 255, 0.4);
     border: 2px solid #ff9acb;
     border-radius: 20px;
@@ -75,7 +87,6 @@ button:hover {
     backdrop-filter: blur(6px);
     animation: fadeIn 0.6s ease;
 }
-
 
 .hidden {
     display: none;
